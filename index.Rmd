@@ -1,0 +1,61 @@
+# Introducción 
+
+> Capacitación Augura:<img src = "img/db.jpg" width=350 align=right><br>
+Análisis de datos experimentales en agricultura con R <br>
+Miércoles, 22 de agosto a <br>
+Viernes, 24 de agosto de 2018 
+
+
+
+
+El diseño experimental y análisis estadístico constituyen, quizás, la herramienta más poderosa con la que contamos en ciencias naturales. Gracias a esta herramienta es que logramos discernir entre los efectos reales de nuestras prácticas o tratamientos y los engaños de la intuición o la interpretación subjetiva. Además, esta herramienta no es de uso exclusivo de los científicos y, por el contrario, toda actividad industrial es susceptible de obtener sus beneficios. De hecho, las grandes multinacionales fundamentan todas sus decisiones en el diseño de experimentos y el análisis estadístico de datos. Por lo anterior, se hace necesario promover dentro de las comunidades académicas y emprendimientos de todo tipo el uso adecuado de estas herramientas para la toma de decisiones.
+
+# Instructor 
+<div class="section group"><div class="col span_1_of_1"><img src = "img/carlos.jpg" style = "border-radius: 50%; border-color: white 1px; margin: 20px">  
+[Carlos N. Lozano A. MsC](https://www.facebook.com/databasedMD/)  
+Data-Based
+
+# Objetivos 
+
+1. Desarrollar en los participantes habilidades básicas en el manejo de software R para análisis de datos.
+
+2. Introducir a los participantes al uso de R, en relación con los conceptos fundamentales del diseño experimental y de la comunicación gráfica de datos.
+
+# Contenido
+
+## Sesión 1 (4 horas)
+### Trabajo básico con `R`
+
++ Introducción a R y Rstudio
++ Tipos de variables y la lógica básica de la investigación
++ Registro de datos en Excel para análisis en R
++ Importación de datos a R
++ Visualización de datos en R
+
+## Sesión 2 (4 horas)
+### Análisis de varianza en `R` - Parte 1
+
++ La búsqueda de efectos: la lógica del análisis de varianza
++ Diseño completamente aleatorizado
++ Diseño en bloques al alzar
++ Diseño en parcelas dividas
+
+## Sesión 3 (4 horas)
+### Análisis de varianza en `R` - Parte 2
+
++ Diseño de parcelas divididas
++ Diseño factorial
++ Pruebas de comparación de medias
+
+## Sesión 4 (4 horas)
+### Alternativas frecuentes al análisis de varianza
+
++ Transformaciones como primera alternativa
++ Pruebas No-paramétricas
++ Tablas de contingencia
++ Regresión lineal 
+
+## Sesión 5 (4 horas)
+
++ Producción: Gráficos listos para publicación
+

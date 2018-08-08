@@ -1,0 +1,17 @@
+---
+title: Antes de empezar
+author: Carlos N. Lozano
+minutes: 15
+---
+
+------------
+
+> ### Objectivos de aprendizaje
+>
+> * Introducción a R studio, scripts  y paneles (_Enviroment_, _Plot_ ....)
+> * Organizar flujo de trabajo (Archivos, carpetas, Proyectos) para conducir una análisis e R
+> * Uso del sistema de ayuda en Rstudio
+> * Errores y problemas más comunes en R 
+
+------------
+
