@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Carlos N. Lozano" />
+
+
+<title>Análisis exploratorio de datos con R</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Análisis de datos agrícolas con R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="01-eda.html">00-Intro</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Análisis de varianza
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="00-Intro.html">Parte 1</a>
+    </li>
+    <li>
+      <a href="00-Intro.html">Parte 2</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Análisis exploratorio de datos con R</h1>
+<h4 class="author"><em>Carlos N. Lozano</em></h4>
+
+</div>
+
+
+<div id="hablemos-de-r" class="section level2">
+<h2>Hablemos de <strong>R</strong></h2>
+<p><img src="img/R.png" style="display: block; margin: auto;" /></p>
+</div>
+<div id="hablemos-de-r-1" class="section level2">
+<h2>Hablemos de <strong>R</strong></h2>
+<p><img src="./assets/img/Rcurve.png" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="hablemos-de-r-2" class="section level2">
+<h2>Hablemos de <strong>R</strong></h2>
+<p><img src="./assets/img/Ruso.gif" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="hablemos-de-r-3" class="section level2">
+<h2>Hablemos de <strong>R</strong></h2>
+<p><img src="./assets/img/Rscholar.png" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="instalacion-de-r" class="section level2">
+<h2>Instalación de <strong>R</strong></h2>
+<p>Empezaremos por lo más básico, Podemos instalar <strong>R</strong> desde el siguiente link: <a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a></p>
+<table style="width:42%;">
+<colgroup>
+<col width="26%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sistema Operativo</th>
+<th>Método</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Windows</td>
+<td><a href="https://cran.r-project.org/bin/windows/base/old/3.4.2/R-3.4.2-win.exe" class="uri">https://cran.r-project.org/bin/windows/base/old/3.4.2/R-3.4.2-win.exe</a></td>
+</tr>
+<tr class="even">
+<td>Debian y derivados</td>
+<td><code>sudo apt-get install r-base</code></td>
+</tr>
+<tr class="odd">
+<td>Redhat y derivados</td>
+<td><code>sudo yum install R-core R-devel</code></td>
+</tr>
+<tr class="even">
+<td>Mac</td>
+<td><a href="https://www.youtube.com/watch?v=ICGkG7Gg6j0" class="uri">https://www.youtube.com/watch?v=ICGkG7Gg6j0</a></td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+<div id="entornos-de-desarrollo-para-r" class="section level2">
+<h2>Entornos de desarrollo para R</h2>
+<p>Una vez instalado, un entorno de desarrollo integrado será necesario para facilitar el desarrollo de códigos en <strong>R</strong>, por lo que se presentan tres de varias opciones para trabajar con <strong>R</strong>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">IDE</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Tinn-R</td>
+<td><a href="https://sourceforge.net/projects/tinn-r/" class="uri">https://sourceforge.net/projects/tinn-r/</a></td>
+</tr>
+<tr class="even">
+<td align="center">R-Studio [Recomendado]</td>
+<td><a href="https://www.rstudio.com/" class="uri">https://www.rstudio.com/</a></td>
+</tr>
+<tr class="odd">
+<td align="center">R commander (Rcmdr)</td>
+<td><a href="http://www.rcommander.com/" class="uri">http://www.rcommander.com/</a></td>
+</tr>
+</tbody>
+</table>
+<div class="figure">
+<img src="https://rstudio.com/wp-content/uploads/2015/10/rstudio-300x260.png" alt="RIDE" />
+<p class="caption">RIDE</p>
+</div>
+<hr />
+</div>
+<div id="rstudio" class="section level2">
+<h2>Rstudio</h2>
+<p><img src="./assets/img/Rstudio.png" width="900px" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="flujo-de-trabajo-sugerido-en-rstudio" class="section level2">
+<h2>Flujo de trabajo sugerido en Rstudio</h2>
+<p><img src="./assets/img/rcore.png" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="flujo-de-trabajo-sugerido-en-rstudio-1" class="section level2">
+<h2>Flujo de trabajo sugerido en Rstudio</h2>
+<p><img src="./assets/img/rf1.png" width="900px" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="flujo-de-trabajo-sugerido-en-rstudio-2" class="section level2">
+<h2>Flujo de trabajo sugerido en Rstudio</h2>
+<p><img src="./assets/img/rf2.png" width="900px" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="flujo-de-trabajo-sugerido-en-rstudio-3" class="section level2">
+<h2>Flujo de trabajo sugerido en Rstudio</h2>
+<p><img src="./assets/img/rf3.png" width="900px" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="flujo-de-trabajo-sugerido-en-rstudio-4" class="section level2">
+<h2>Flujo de trabajo sugerido en Rstudio</h2>
+<p><img src="./assets/img/ef4.png" width="400px" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="empecemos." class="section level2">
+<h2>Empecemos…….</h2>
+<p><img src="https://media.giphy.com/media/3oz8xOJiQ9VtnOKAIU/giphy.gif" width="550px" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="estructura-de-datos" class="section level2">
+<h2>0. Estructura de datos</h2>
+<p><img src="./assets/img/dest.png" width="600px" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="importando-datos-a-r" class="section level2">
+<h2>1. Importando datos a R</h2>
+<blockquote>
+<p><em>Tips</em>: cosas que podrían producir problemas.</p>
+</blockquote>
+<ul>
+<li><p>El <em>separador decimal</em> SIEMPRE SIEMPRE será un punto.</p></li>
+<li><p>Nombres de columnas: no debe comenzar con números, tienen que ser sencillos y sin espacios ni caracteres especiales. Como sugerencia, los nombres de columnas deben ser cortos, ya que tendrás que escribirlos muchas veces.</p></li>
+<li><p><em>R</em> diferencia entre mayúscula y minúscula. <code>Rosa no es lo mismo que rosa</code>.</p></li>
+<li><p>Si en una columna hay <em>datos faltantes</em> se debe dejar <code>espacio en blanco</code> o remplazar con <code>NA</code> (con mayúsculas).</p></li>
+</ul>
+<hr />
+</div>
+<div id="importando-datos-a-r-1" class="section level2">
+<h2>1. Importando datos a R</h2>
+<p>La forma más sencilla de importar un <code>.csv</code> es a través del comando <code>read.csv(...)</code>, cuya implementación es la siguiente:</p>
+<pre class="r"><code>read.csv(file, header = TRUE, sep = &quot;,&quot;, dec = &quot;.&quot;, ...)</code></pre>
+<p>Dónde:</p>
+<table style="width:47%;">
+<colgroup>
+<col width="19%" />
+<col width="27%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Argumentos</th>
+<th>Significado o uso</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>file</code></td>
+<td>Ruta al archivo</td>
+</tr>
+<tr class="even">
+<td><code>header</code></td>
+<td>Valor lógico para determinar si el archivo incluye encabezados en la primera linea.</td>
+</tr>
+<tr class="odd">
+<td><code>sep</code></td>
+<td>Este campo sirve para especificar el carácter de separación.</td>
+</tr>
+<tr class="even">
+<td><code>dec</code></td>
+<td>El carácter usado para los puntos decimales</td>
+</tr>
+<tr class="odd">
+<td><code>...</code></td>
+<td>Ver la documentación para argumentos extras</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+<div id="importando-datos-a-r-2" class="section level2">
+<h2>1. Importando datos a R</h2>
+<p>Un ejemplo sería el siguiente:</p>
+<pre class="r"><code>datos &lt;- read.csv(&quot;dataframe1.csv&quot;,, header=T, sep=&#39;;&#39;, dec=&#39;,&#39;)</code></pre>
+<hr />
+</div>
+<div id="manejando-datos" class="section level2">
+<h2>2. Manejando datos</h2>
+<div id="que-son-los-dataframes-o-conjunto-de-datos" class="section level3">
+<h3>¿Que son los <strong>dataframes o conjunto de datos</strong>?</h3>
+<p><img src="./assets/img/df.png" width="400px" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="manejando-datos-1" class="section level2">
+<h2>2. Manejando datos</h2>
+<div id="inspeccionado-el-contenido-de-un-dataframe" class="section level3">
+<h3>Inspeccionado el contenido de un <code>dataframe</code></h3>
+<p>Las funciones <code>str()</code>, <code>head()</code>, <code>summary()</code> pueden ser útiles para verificar el contenido y estructura de un <code>dataframe</code>.</p>
+<pre class="r"><code>head(mtcars)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","6":"2.620","7":"16.46","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4"},{"1":"21.0","2":"6","3":"160","4":"110","5":"3.90","6":"2.875","7":"17.02","8":"0","9":"1","10":"4","11":"4","_rn_":"Mazda RX4 Wag"},{"1":"22.8","2":"4","3":"108","4":"93","5":"3.85","6":"2.320","7":"18.61","8":"1","9":"1","10":"4","11":"1","_rn_":"Datsun 710"},{"1":"21.4","2":"6","3":"258","4":"110","5":"3.08","6":"3.215","7":"19.44","8":"1","9":"0","10":"3","11":"1","_rn_":"Hornet 4 Drive"},{"1":"18.7","2":"8","3":"360","4":"175","5":"3.15","6":"3.440","7":"17.02","8":"0","9":"0","10":"3","11":"2","_rn_":"Hornet Sportabout"},{"1":"18.1","2":"6","3":"225","4":"105","5":"2.76","6":"3.460","7":"20.22","8":"1","9":"0","10":"3","11":"1","_rn_":"Valiant"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<hr />
+</div>
+</div>
+<div id="manejando-datos-2" class="section level2">
+<h2>2. Manejando datos</h2>
+<div id="inspeccionado-el-contenido-de-un-dataframe-1" class="section level3">
+<h3>Inspeccionado el contenido de un <code>dataframe</code></h3>
+<pre class="r"><code>str(mtcars)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    32 obs. of  11 variables:
+##  $ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
+##  $ cyl : num  6 6 4 6 8 6 8 4 4 6 ...
+##  $ disp: num  160 160 108 258 360 ...
+##  $ hp  : num  110 110 93 110 175 105 245 62 95 123 ...
+##  $ drat: num  3.9 3.9 3.85 3.08 3.15 2.76 3.21 3.69 3.92 3.92 ...
+##  $ wt  : num  2.62 2.88 2.32 3.21 3.44 ...
+##  $ qsec: num  16.5 17 18.6 19.4 17 ...
+##  $ vs  : num  0 0 1 1 0 1 0 1 1 1 ...
+##  $ am  : num  1 1 1 0 0 0 0 0 0 0 ...
+##  $ gear: num  4 4 4 3 3 3 3 4 4 4 ...
+##  $ carb: num  4 4 1 1 2 1 4 2 2 4 ...</code></pre>
+<hr />
+</div>
+</div>
+<div id="manejando-datos-3" class="section level2">
+<h2>2. Manejando datos</h2>
+<div id="inspeccionado-el-contenido-de-un-dataframe-2" class="section level3">
+<h3>Inspeccionado el contenido de un <code>dataframe</code></h3>
+<pre class="r"><code>summary(mtcars)</code></pre>
+<pre><code>##       mpg             cyl             disp             hp       
+##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
+##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  
+##  Median :19.20   Median :6.000   Median :196.3   Median :123.0  
+##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  
+##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  
+##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  
+##       drat             wt             qsec             vs        
+##  Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  
+##  1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  
+##  Median :3.695   Median :3.325   Median :17.71   Median :0.0000  
+##  Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  
+##  3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  
+##  Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  
+##        am              gear            carb      
+##  Min.   :0.0000   Min.   :3.000   Min.   :1.000  
+##  1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  
+##  Median :0.0000   Median :4.000   Median :2.000  
+##  Mean   :0.4062   Mean   :3.688   Mean   :2.812  
+##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
+##  Max.   :1.0000   Max.   :5.000   Max.   :8.000</code></pre>
+<hr />
+</div>
+</div>
+<div id="funciones-mas-comunes" class="section level2">
+<h2>3. Funciones más comunes</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Función</th>
+<th>Matemáticas</th>
+<th align="center">Función</th>
+<th>Estadísticas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">sqrt(x)</td>
+<td>Raíz de <span class="math inline">\(x\)</span></td>
+<td align="center">mean(x)</td>
+<td>Media</td>
+</tr>
+<tr class="even">
+<td align="center">exp(x)</td>
+<td>Exponencial de <span class="math inline">\(x\)</span></td>
+<td align="center">sd(x)</td>
+<td>Desviación estándar</td>
+</tr>
+<tr class="odd">
+<td align="center">log(x)</td>
+<td>Logaritmo natural de <span class="math inline">\(x\)</span></td>
+<td align="center">var(x)</td>
+<td>Varianza</td>
+</tr>
+<tr class="even">
+<td align="center">log10(x)</td>
+<td>Logaritmo base 10</td>
+<td align="center">median(x)</td>
+<td>Mediana</td>
+</tr>
+<tr class="odd">
+<td align="center">sum(x)</td>
+<td>Suma de los elementos de <span class="math inline">\(x\)</span></td>
+<td align="center">quantiles(x)</td>
+<td>Quantiles</td>
+</tr>
+<tr class="even">
+<td align="center">prod(x)</td>
+<td>Producto de los elementos de <span class="math inline">\(x\)</span></td>
+<td align="center">cor(x,y)</td>
+<td>Correlación</td>
+</tr>
+<tr class="odd">
+<td align="center">sin(x)</td>
+<td>Seno</td>
+<td align="center">max(x)</td>
+<td>Valor máximo</td>
+</tr>
+<tr class="even">
+<td align="center">cos(x)</td>
+<td>Coseno</td>
+<td align="center">min(x)</td>
+<td>Valor mínimo</td>
+</tr>
+<tr class="odd">
+<td align="center">tan(x)</td>
+<td>Tangente</td>
+<td align="center">range(x)</td>
+<td>Retorna el máximo y mínimo</td>
+</tr>
+<tr class="even">
+<td align="center">round(x,n)</td>
+<td>Redondea a <span class="math inline">\(n\)</span> dígitos</td>
+<td align="center">sort(x)</td>
+<td>Ordena los elementos de <span class="math inline">\(x\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">cumsum(x)</td>
+<td>Calcula las sumas acumuladas</td>
+<td align="center">summary</td>
+<td>Resumen de las variables</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td>(<span class="math inline">\(x_1, x_1 + x_2, + x_1 +\ldots+x_n\)</span>)</td>
+<td align="center">choose(n,k)</td>
+<td>Combinatoria de <span class="math inline">\(n\)</span> sobre <span class="math inline">\(k\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+<div id="pidiendo-ayuda-en-r" class="section level2">
+<h2>Pidiendo ayuda en R</h2>
+<p>La documentación de ayuda y soporte en R es completa y de fácil acceso desde la línea de comando.</p>
+<div id="ayuda-general" class="section level3">
+<h3>Ayuda general</h3>
+<pre class="r"><code>help.start()           # Ofrece links de ayuda general
+help.search(&quot;texto&quot;)    # Busca un tema específico</code></pre>
+<pre class="r"><code>?mean  # Para funciones conocidas 
+
+??correlation # Búsuqedas más amplias </code></pre>
+<hr />
+</div>
+</div>
+<div id="estadistica-descriptiva-y-analisis-exploratorio-con-r" class="section level2">
+<h2>Estadística descriptiva y análisis exploratorio con R</h2>
+<p><span style="display:block; height: 2cm;"></span></p>
+<p><img src="./assets/img/eda.png" width="600px" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="datos" class="section level2">
+<h2>Datos</h2>
+<p><span style="display:block; height: 2cm;"></span></p>
+<p>En estadística, ‘los datos’ se conceptualizan como un conjunto de <span style="color:#FF4000">objetos</span> sobre los cuales medimos u observamos una o más <span style="color:#DF0101">características </span>.</p>
+<p><img src="./assets/img/data2.jpg" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="variable" class="section level2">
+<h2>Variable</h2>
+<p><span style="display:block; height: 2cm;"></span></p>
+<p><q> Una característica o atributo que puede <span style="color:#FF4000">variar</span> de un individuo a otro. </q></p>
+<hr />
+</div>
+<div id="variable-1" class="section level2">
+<h2>Variable</h2>
+<span style="display:block; height: 2cm;"></span>
+<style>
+  <slide class="{{ slide.class }}" id="{{ slide.id }}">
+    <hgroup>
+    {{{ slide.header }}}
+  </hgroup>
+    <article>
+    <hr noshade size=4 color='red'>  
+    {{{ slide.content }}}  
+    <div class='left' style='float:left;width:48%'>
+    {{{ slide.left.html }}}
+    </div>    
+      <div class='right' style='float:right;width:48%'>
+      {{{ slide.right.html }}}
+      </div>
+        </article>
+        </slide>
+</style>
+<p>*** {name: left}</p>
+<ul>
+<li><span style="color:orange">Inviduo </span></li>
+<li>Observación</li>
+<li>sujeto</li>
+<li>objeto</li>
+<li>caso</li>
+<li><strong>Unidad experimental</strong></li>
+</ul>
+<p>*** {name: right} - <span style="color:orange">Variables </span> - Característica - Atributo - Rasgo</p>
+<hr />
+</div>
+<div id="variables" class="section level2">
+<h2>Variables</h2>
+<p><q> Las <span style="color:red"> variables</span> juegan un papel protagónico en la estadística y diseño de experimentos </q></p>
+<hr />
+</div>
+<div id="variables-1" class="section level2">
+<h2>Variables</h2>
+<p><img src="./assets/img/flujo.jpg" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="variables-2" class="section level2">
+<h2>Variables</h2>
+<p><img src="./assets/img/Var.jpg" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="caso-1-unas-cuantas-manzanas." class="section level2">
+<h2>Caso 1: Unas cuantas manzanas….</h2>
+<p><span style="display:block; height: 2cm;"></span></p>
+<p><img src="./assets/img/1.png" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="caso-1-unas-cuantas-manzanas.-1" class="section level2">
+<h2>Caso 1: Unas cuantas manzanas….</h2>
+<p><img src="./assets/img/2.png" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="caso-2-mas-manzanas." class="section level2">
+<h2>Caso 2: Más manzanas….</h2>
+<p><img src="./assets/img/3.png" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="caso-2-mas-manzanas.-1" class="section level2">
+<h2>Caso 2: Más manzanas….</h2>
+<p><img src="./assets/img/4.png" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="caso-3-muchas-mas-manzanas." class="section level2">
+<h2>Caso 3: Muchas más manzanas….</h2>
+<p><img src="./assets/img/5.png" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="caso-3-muchas-mas-manzanas.." class="section level2">
+<h2>Caso 3: Muchas más manzanas…..</h2>
+<p><img src="./assets/img/6.png" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="resumiendo-variables" class="section level2">
+<h2>Resumiendo variables…</h2>
+<p><span style="display:block; height: 2cm;"></span></p>
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Tablas de frecuencia</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2" style="list-style-type: decimal">
+<li>Gráficos</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3" style="list-style-type: decimal">
+<li>Resumenes numéricos</li>
+</ol>
+</blockquote>
+<hr />
+</div>
+<div id="resumiendo-variables-tablas-de-frecuencia" class="section level2">
+<h2>Resumiendo variables: Tablas de frecuencia</h2>
+<p><img src="./assets/img/fre.png" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="resumiendo-variables-tablas-de-frecuencia-1" class="section level2">
+<h2>Resumiendo variables: Tablas de frecuencia</h2>
+<p><span style="display:block; height: 3cm;"></span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Acidity</th>
+<th align="center">Conteo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Low</td>
+<td align="center">23</td>
+</tr>
+<tr class="even">
+<td align="center">Medium</td>
+<td align="center">12</td>
+</tr>
+<tr class="odd">
+<td align="center">High</td>
+<td align="center">35</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+<div id="resumiendo-variables-numericas" class="section level2">
+<h2>Resumiendo variables numéricas</h2>
+<p><span style="display:block; height: 2cm;"></span></p>
+<p><img src="./assets/img/flujoMed.jpg" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="medidas-de-tendencia-central" class="section level2">
+<h2>Medidas de tendencia central</h2>
+<p><span style="display:block; height: 2cm;"></span></p>
+<ul>
+<li><p>Media: Promedio</p></li>
+<li><p>Mediana: Punto medio o central</p></li>
+<li><p>Moda: Más común o frecuente</p></li>
+</ul>
+<hr />
+</div>
+<div id="media" class="section level2">
+<h2>Media</h2>
+<p><span class="math display">\[\bar x = \frac{1}{n}\sum_{i = 1}^{n} x_i\]</span></p>
+<p><img src="./assets/img/media.png" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="mediana" class="section level2">
+<h2>Mediana</h2>
+<p>Es el punto medio o central de una distribución ordenada de valores.</p>
+<p><img src="./assets/img/mediana.png" style="display: block; margin: auto;" /></p>
+<p><img src="./assets/img/mediana2.png" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="medidas-de-dispersion" class="section level2">
+<h2>Medidas de dispersión</h2>
+<ul>
+<li>Desviación estándar</li>
+<li>Varianza</li>
+<li>Rango</li>
+</ul>
+<hr />
+</div>
+<div id="variables-categoricas-representacion-grafica" class="section level2">
+<h2>Variables categóricas: Representación gráfica</h2>
+<div id="grafico-de-tortas" class="section level3">
+<h3>Gráfico de tortas</h3>
+<p><img src="01-eda_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="variables-categoricas-representacion-grafica-1" class="section level2">
+<h2>Variables categóricas: Representación gráfica</h2>
+<div id="grafico-de-barras" class="section level3">
+<h3>Gráfico de barras</h3>
+<p><img src="01-eda_files/figure-html/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+</div>
+<div id="exploracion-grafica" class="section level2">
+<h2>Exploración gráfica</h2>
+<blockquote>
+<ul>
+<li><strong>Exploración</strong>: Comprobar si en los datos hay valores inusuales, asegurarse de cumplir los suspuestos requeridos por el anáisis seleccionados y, en ocasiones, ayudarnos a decidir que tipo de análisis llevar a cabo.</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><strong>Análisis</strong>: Evaluación de hipótesis</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><strong>Presentación y comunicación de resultados</strong></li>
+</ul>
+</blockquote>
+<hr />
+</div>
+<div id="histogramas" class="section level2">
+<h2>Histogramas</h2>
+<p><img src="01-eda_files/figure-html/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="dot-plots-o-graficos-de-puntos" class="section level2">
+<h2>Dot plots o gráficos de puntos</h2>
+<p><img src="01-eda_files/figure-html/unnamed-chunk-38-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="boxplot-o-cajas-y-bigotes" class="section level2">
+<h2>Boxplot o Cajas y bigotes</h2>
+<p><img src="./assets/img/boxplot3.png" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="boxplot-o-cajas-y-bigotes-1" class="section level2">
+<h2>Boxplot o Cajas y bigotes</h2>
+<p><img src="01-eda_files/figure-html/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="boxplot-o-cajas-y-bigotes-2" class="section level2">
+<h2>Boxplot o Cajas y bigotes</h2>
+<p><img src="01-eda_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="scatterplot-o-grafico-de-dispersion" class="section level2">
+<h2>Scatterplot o Gráfico de dispersión</h2>
+<p><img src="01-eda_files/figure-html/unnamed-chunk-42-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -16,11 +16,14 @@ output:
 navbar:
   title: Análisis de datos agrícolas con R
   left:
-  
-  - text: Antes de empezar
+  - text: '00-Intro' 
+    href: 01-eda.html
+  - text: 'Análisis de varianza'  
     menu:
-    - text: Intro R 
+    - text: 'Parte 1' 
+      href: 00-Intro.html 
+    - text: 'Parte 2' 
       href: 00-Intro.html
-    -text: Presentación
-      href: 
-   
+      
+    
+ 
