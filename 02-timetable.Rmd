@@ -5,10 +5,8 @@
 |:-------:	|:-------:	|:-------:	|:-----------------------:	|:-------:	|
 | Ago, 22 	| 10 - 13 	| Mañana  	|   Trabajo Básico en R   	|         	|
 | Ago, 22 	| 14 - 18 	| Tarde   	|  Análisis de Varianza I 	|         	|
-:-------:	|:-------:	|:-------:	|:-----------------------:	|:-------:	|
 | Ago, 23 	| 8 - 12  	| Mañana  	| Análisis de Varianza II 	|         	|
 | Ago, 23 	| 14 - 18 	| Tarde   	|    Alternativas ANOVA   	|         	|
-:-------:	|:-------:	|:-------:	|:-----------------------:	|:-------:	|
 | Ago, 24 	| 8 - 13  	| Mañana  	|    Producción gráfica   	|         	|
 
 De [click aqui](index.html#contenido) para ver contenido detallado 
