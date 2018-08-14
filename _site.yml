@@ -1,4 +1,4 @@
-name: 'teste'
+name: 'Análisis de datos | AUGURA'
 output_dir: docs
 output:
   html_document:
@@ -16,14 +16,42 @@ output:
 navbar:
   title: Análisis de datos agrícolas con R
   left:
-  - text: '00-Intro' 
-    href: 01-eda.html
-  - text: 'Análisis de varianza'  
-    menu:
-    - text: 'Parte 1' 
-      href: 00-Intro.html 
-    - text: 'Parte 2' 
-      href: 00-Intro.html
+    - text: 'Home'
+      icon: fa-home
+      href: index.html
+    - text: '00-Intro' 
+      icon: <i class="fab fa-r-project"></i>
+      href: 01-eda.html
+    - text: 'Análisis de varianza'  
+      icon: fa-chart-bar
+      menu:
+      - text: 'Parte 1' 
+        icon: fa-battery-quarter
+        href: 00-Intro.html 
+        
+      - text: 'Parte 2' 
+        icon: fa-battery-three-quarters
+        href: 00-Intro.html
+    - text: Otros métodos
+      icon: fa-database
+      menu: 
+      - text: 'Transformaciones'
+        icon: fa-random
+        href: 00-Intro.html
+      - text: 'Pruebas No-paramétricas'
+        icon: fa-exchange-alt
+        href: 00-Intro.html
+      - text: 'Tablas de contigencia' 
+        icon: fa-table
+        href: 00-Intro.html
+      - text: 'Regresión lineal'
+        icon: fa-chart-line
+        href: 00-Intro.html
+    
+  right: 
+    - text: 'Programa'
+      icon: fa-calendar
+      href: 02-timetable.html
       
     
  
