@@ -3,10 +3,12 @@
 
 |  Fecha  	|   Hora  	| Jornada 	|           Tema          	| Recurso 	|
 |:-------:	|:-------:	|:-------:	|:-----------------------:	|:-------:	|
-| Ago, 22 	| 10 - 13 	| Mañana  	|   Trabajo Básico en R   	|         	|
-| Ago, 22 	| 14 - 18 	| Tarde   	|  Análisis de Varianza I 	|         	|
-| Ago, 23 	| 8 - 12  	| Mañana  	| Análisis de Varianza II 	|         	|
-| Ago, 23 	| 14 - 18 	| Tarde   	|    Alternativas ANOVA   	|         	|
-| Ago, 24 	| 8 - 13  	| Mañana  	|    Producción gráfica   	|         	|
+| Ago, 22 	| 10 - 13 	| Mañana  	|   <i class="fas fa-charging-station"></i>Trabajo Básico en R   	|         	|
+| Ago, 22 	| 14 - 18 	| Tarde   	|  <i class="far fa-chart-bar"></i>Análisis de Varianza I 	|         	|
+| Ago, 23 	| 8 - 12  	| Mañana  	| <i class="far fa-chart-bar"></i>Análisis de Varianza II 	|         	|
+| Ago, 23 	| 14 - 18 	| Tarde   	|    <i class="far fa-chart-bar"></i>Alternativas ANOVA   	|         	|
+| Ago, 24 	| 8 - 13  	| Mañana  	|     <i class="fas fa-chart-pie"></i> Producción gráfica <br> <i class="fas fa-shoe-prints"></i> Taller datos propios  	|         	|
+
+
 
 De [click aqui](index.html#contenido) para ver contenido detallado 

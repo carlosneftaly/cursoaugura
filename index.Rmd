@@ -20,7 +20,6 @@ El diseño experimental y análisis estadístico constituyen, quizás, la herram
 1. Desarrollar en los participantes habilidades básicas en el manejo de software R para análisis de datos.
 
 2. Introducir a los participantes al uso de R, en relación con los conceptos fundamentales del diseño experimental y de la comunicación gráfica de datos.
-
 # Contenido
 
 ## Sesión 1 (4 horas)
@@ -61,3 +60,4 @@ El diseño experimental y análisis estadístico constituyen, quizás, la herram
   
   + Producción: Gráficos listos para publicación
   
+
