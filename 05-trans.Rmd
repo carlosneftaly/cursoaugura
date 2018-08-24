@@ -1,0 +1,30 @@
+---
+title: Transformaciones
+author: Carlos N. Lozano
+---
+
+
+------------
+
+> ### Objectivos de aprendizaje
+>
+> *Uso de funciones para ajustar violaciones a Normalidad y Homocedasticidad.
+ 
+
+------------
+
+
+# Transformaciones
+
+
+ 
+ + <img src="https://png.icons8.com/cotton/50/000000/copy.png"> [Set de datos I](https://drive.google.com/file/d/13OcBsAfSxPz9tZHaH3WRCIjziC4_LAbR/view?usp=sharing)
+ 
+ 
+  
+ + <img src="https://png.icons8.com/cotton/50/000000/copy.png"> [Set de datos II](https://drive.google.com/file/d/1Topn8925IQ0lC9hLKDbRcjLnJZwWENpu/view?usp=sharing)
+
+ +  <img src="https://png.icons8.com/ultraviolet/50/000000/xbox-r.png">[Script R](https://drive.google.com/file/d/1g-uTY9L_MPAjr8dqqGGFmCDl01aRGp87/view?usp=sharing)
+ 
+
+

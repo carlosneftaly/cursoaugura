@@ -27,20 +27,20 @@ navbar:
       menu:
       - text: 'Parte 1' 
         icon: fa-battery-quarter
-        href: 00-Intro.html 
+        href: 01-Anova.html 
         
       - text: 'Parte 2' 
         icon: fa-battery-three-quarters
-        href: 00-Intro.html
+        href: 02-Anova.html
     - text: Otros métodos
       icon: fa-database
       menu: 
       - text: 'Transformaciones'
         icon: fa-random
-        href: 00-Intro.html
+        href: 05-trans.html
       - text: 'Pruebas No-paramétricas'
         icon: fa-exchange-alt
-        href: 00-Intro.html
+        href: NonP.html
       - text: 'Tablas de contigencia' 
         icon: fa-table
         href: 00-Intro.html

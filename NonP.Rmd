@@ -1,0 +1,30 @@
+---
+title: Alternativas frecuentes al análisis de varianza
+author: Carlos N. Lozano
+---
+
+
+------------
+
+> Más allá de la normalidad hay vida…. Veremos algunos métodos para afrontar violación de supuestos.
+
+
+------------
+
+# Presentación 
+
+ + <i class="far fa-file-powerpoint"></i> [Presentación](NonP/index.html)
+
+## Prueba de Wilcoxon 
+
+ + <img src="https://png.icons8.com/cotton/50/000000/copy.png"> [Set de datos Wilcoxon](https://drive.google.com/file/d/13N7AhJI_sEPUA_JsqU-mcdTfBZZ_TpKc/view)
+ 
+
+ +  <img src="https://png.icons8.com/ultraviolet/50/000000/xbox-r.png">[Script R](https://drive.google.com/file/d/1eos41_Dtz8P-R5jG7jJTX5j8Gc0Kddw0/view)
+ 
+## Prueba de Kruskal - Wallis 
+
++ <img src="https://png.icons8.com/cotton/50/000000/copy.png"> [Set de datos KW](https://drive.google.com/file/d/1i55YeXiqL9MF3lmc9KQkrcdvbg2V9CaM/view)
+ 
+
+ +  <img src="https://png.icons8.com/ultraviolet/50/000000/xbox-r.png">[Script R](https://drive.google.com/file/d/1IXF4wRmNiRzOj8TOZpKhwGBvF9WrvIJB/view)

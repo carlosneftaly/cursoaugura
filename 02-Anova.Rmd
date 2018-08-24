@@ -1,0 +1,43 @@
+---
+title: Análisis de Varianza (ANOVA)
+author: Carlos N. Lozano
+---
+
+
+------------
+
+> ### Objectivos de aprendizaje
+>
+> *Prinicipio Análisis de varianza
+> * Conducir ANOVA en R
+> * Comparaciones múltiples
+> * Errores y problemas más comunes en R 
+
+------------
+
+
+# ANOVA II 
+
+## Diseño Factorial 
+ + <i class="far fa-file-powerpoint"></i> [Presentación](Factorial/index.html)
+ 
+ + <img src="https://png.icons8.com/cotton/50/000000/copy.png"> [Set de datos I](https://drive.google.com/file/d/19T4DIFjDsW79MzR0JOeIIzim3pWUVnU4/view?usp=sharing)
+ 
+
+ +  <img src="https://png.icons8.com/ultraviolet/50/000000/xbox-r.png">[Script R](https://drive.google.com/file/d/1yQKK0jxVNVvEmG8Iu5gvLtWsGa4_gFs8/view?usp=sharing)
+ 
+## Diseño en Bloques 
+
++ <img src="https://png.icons8.com/cotton/50/000000/copy.png"> [Set de datos I](https://drive.google.com/file/d/19T4DIFjDsW79MzR0JOeIIzim3pWUVnU4/view?usp=sharing)
+ 
+
+ +  <img src="https://png.icons8.com/ultraviolet/50/000000/xbox-r.png">[Script R](https://drive.google.com/file/d/1aUMf83y_FAkkPL5pXhOcNfCalnSvwQNB/view?usp=sharing)
+ 
+## Diseño en parcelas divididas 
+ 
+ + <img src="https://png.icons8.com/cotton/50/000000/copy.png"> [Set de datos I](https://drive.google.com/file/d/1S54b4jOL3ZXEmO3-UhBIJkRoiX-w2a2f/view?usp=sharing)
+ 
+
+ +  <img src="https://png.icons8.com/ultraviolet/50/000000/xbox-r.png">[Script R](https://drive.google.com/file/d/1MsBQx8Z26kGvZ9suW_LWtFo2bqzZfJtS/view?usp=sharing)
+ 
+

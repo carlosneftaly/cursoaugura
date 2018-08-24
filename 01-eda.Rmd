@@ -16,5 +16,19 @@ author: Carlos N. Lozano
 ------------
 
 
-1. Introducción a R 
- + <i class="far fa-file-powerpoint"></i>[Presentación](Intro_R/index.html)
+# Introducción a R 
+ + <i class="far fa-file-powerpoint"></i> [Presentación](eda_r/index.html)
+ 
+ + <img src="https://png.icons8.com/cotton/50/000000/copy.png"> [Set de datos](https://drive.google.com/file/d/1adGVmX_qC13-k2FwgdS_wVAuKsebpTDi/view?usp=sharing)
+ 
+ +  <img src="https://png.icons8.com/ultraviolet/50/000000/xbox-r.png">[Script R](https://drive.google.com/file/d/1KTPwDfYnHHKaWAu8C_C0GjdLfqGpaVUD/view?usp=sharing)
+ 
+# Manipulación de datos con R 
+ 
+ + <i class="far fa-file-powerpoint"></i> [Presentación](man_dplyr/index.html)
+ 
+ + <img src="https://png.icons8.com/cotton/50/000000/copy.png"> [Set de datos](https://drive.google.com/file/d/1adGVmX_qC13-k2FwgdS_wVAuKsebpTDi/view?usp=sharing)
+ 
+ +  <img src="https://png.icons8.com/ultraviolet/50/000000/xbox-r.png">[Script R](https://drive.google.com/file/d/13Kpm69-VIffCSPfJreGbBE8nS3j9iQoz/view?usp=sharing)
+ 
+ 

@@ -1,0 +1,272 @@
+---
+title       : Introducción a R 
+subtitle    : Curso Análisis de datos experimentales con R
+logo        : db.jpg
+author      : Carlos Neftaly Lozano A.
+job         : www.microbiostats.com 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+license     : by-nc-sa
+knit        : slidify::knit2slides
+---
+
+
+
+
+## Hablemos de **R**
+
+```{r include=FALSE}
+library(utils)
+```
+
+
+```{r, echo=FALSE,fig.align='center'}
+      knitr::include_graphics('./img/R.png')
+```
+
+---
+
+## Hablemos de **R**
+
+```{r, echo=FALSE,fig.align='center'}
+      knitr::include_graphics('./img/Rcurve.png')
+```
+
+---
+
+## Hablemos de **R**
+
+```{r, echo=FALSE,fig.align='center'}
+      knitr::include_graphics('.//img/Ruso.gif')
+```
+
+---
+
+## Hablemos de **R**
+
+```{r, echo=FALSE,fig.align='center'}
+      knitr::include_graphics('./img/Rscholar.png')
+```
+
+---
+
+## Entornos de desarrollo para R
+
+Una vez instalado, un entorno de desarrollo integrado será necesario para facilitar el desarrollo de códigos en **R**, por lo que se presentan tres de varias opciones para trabajar con **R**. 
+
+|       IDE             |  Link     |
+|:---------------------:|-----------|
+|   Tinn-R              |https://sourceforge.net/projects/tinn-r/ |
+|R-Studio [Recomendado] |https://www.rstudio.com/ |
+| R commander (Rcmdr)   |http://www.rcommander.com/ |
+
+![RIDE](https://rstudio.com/wp-content/uploads/2015/10/rstudio-300x260.png)
+
+---
+
+## Rstudio
+
+
+```{r, echo=FALSE,fig.align='center',out.width = "900px"}
+      knitr::include_graphics('./assets/img/Rstudio.png')
+```
+
+---
+
+## Flujo de trabajo  sugerido en Rstudio
+
+```{r, echo=FALSE,fig.align='center'}
+      knitr::include_graphics('./assets/img/rcore.png')
+```
+
+--- 
+
+
+## Flujo de trabajo  sugerido en Rstudio
+
+```{r, echo=FALSE,fig.align='center',out.width = "900px"}
+      knitr::include_graphics('./assets/img/rf1.png')
+```
+
+--- 
+
+## Flujo de trabajo  sugerido en Rstudio
+
+```{r, echo=FALSE,fig.align='center',out.width = "900px"}
+      knitr::include_graphics('./assets/img/rf2.png')
+```
+
+--- 
+
+## Flujo de trabajo  sugerido en Rstudio
+
+```{r, echo=FALSE,fig.align='center',out.width = "900px"}
+      knitr::include_graphics('./img/rf3.png')
+```
+
+--- 
+
+## Flujo de trabajo  sugerido en Rstudio
+
+```{r, echo=FALSE,fig.align='center',out.width = "400px"}
+      knitr::include_graphics('./img/ef4.png')
+```
+
+--- 
+
+## Empecemos....... 
+
+```{r, echo=FALSE,fig.align='center',out.width = "550px"}
+      knitr::include_graphics('https://media.giphy.com/media/3oz8xOJiQ9VtnOKAIU/giphy.gif')
+```
+
+--- 
+
+## 0. Estructura de datos 
+
+```{r, echo=FALSE,fig.align='center',out.width = "600px"}
+      knitr::include_graphics('./assets/img/dest.png')
+```
+
+
+--- 
+
+## 1. Importando datos a R 
+
+
+> _Tips_: cosas que podrían producir problemas.
+
+
++ El _separador decimal_ SIEMPRE SIEMPRE será un punto. 
+
++ Nombres de columnas: no debe comenzar con números, tienen que ser sencillos y sin espacios ni caracteres especiales.
+Como sugerencia, los nombres de columnas deben ser cortos, ya que tendrás que escribirlos muchas veces.
+
++ _R_ diferencia entre mayúscula y minúscula. `Rosa no es lo mismo que rosa`. 
+
++ Si en una columna hay _datos faltantes_ se debe dejar `espacio en blanco` o remplazar con `NA` (con mayúsculas).
+
+--- 
+
+## 1. Importando datos a R 
+
+La forma más sencilla de importar un `.csv` es a través del comando `read.csv(...)`, cuya implementación es la siguiente:
+
+```{r ImportarCSV, eval=F}
+read.csv(file, header = TRUE, sep = ",", dec = ".", ...)
+```
+
+Dónde:
+
+| Argumentos  | Significado o uso  |
+|-------------|-------------------|
+| `file`      | Ruta al archivo  |
+| `header`    | Valor lógico para determinar si el archivo incluye encabezados en la primera linea.   |
+| `sep`       | Este campo sirve para especificar el carácter de separación. |
+| `dec`       | El carácter usado para los puntos decimales  |
+| `...`       | Ver la documentación para argumentos extras   |
+
+
+--- 
+
+## 1. Importando datos a R 
+
+
+Un ejemplo sería el siguiente:
+
+```{r readcsv2,eval=F}
+datos <- read.csv("dataframe1.csv",, header=T, sep=';', dec=',')
+```
+
+--- 
+
+## 2. Manejando datos
+### ¿Que son los __dataframes o conjunto de datos__? 
+
+```{r, echo=FALSE,fig.align='center',out.width = "400px"}
+      knitr::include_graphics('./assets/img/df.png')
+```
+
+---
+
+
+## 2. Manejando datos
+### Inspeccionado el contenido de un `dataframe`
+
+Las funciones `str()`, `head()`, `summary()` pueden ser útiles para verificar el contenido y estructura de un `dataframe`.
+
+```{r}
+head(mtcars)
+```
+
+---
+
+## 2. Manejando datos
+### Inspeccionado el contenido de un `dataframe`
+
+
+
+```{r}
+str(mtcars)
+```
+
+---
+
+
+## 2. Manejando datos
+### Inspeccionado el contenido de un `dataframe`
+
+
+
+```{r}
+summary(mtcars)
+```
+
+---
+
+
+## 3. Funciones más comunes 
+
+|   Función   |           Matemáticas                 | Función       |           Estadísticas        |
+|:-----------:|---------------------------------------|:-------------:|-------------------------------|
+|   $sqrt(x)$   | Raíz de $x$                           |    mean(x)    | Media                         |
+|    $exp(x)$   | Exponencial de $x$                    |     sd(x)     | Desviación estándar           |
+|    $log(x)$   | Logaritmo natural de $x$              |     var(x)    | Varianza                      |
+|   $log10(x)$  | Logaritmo base 10                     |   median(x)   | Mediana                       |
+|    sum(x)   | Suma de los elementos de $x$          |  quantiles(x) | Quantiles                     |
+|   prod(x)   | Producto de los elementos de $x$      |    cor(x,y)   | Correlación                   |
+|    sin(x)   | Seno                                  |     max(x)    | Valor máximo                  |
+|    cos(x)   | Coseno                                |     min(x)    | Valor mínimo                  |
+|    tan(x)   | Tangente                              |    range(x)   | Retorna el máximo y mínimo    |
+|  round(x,n) | Redondea a $n$ dígitos                |    sort(x)    | Ordena los elementos de $x$   |
+|  cumsum(x)  | Calcula las sumas acumuladas          |    summary    | Resumen de las variables      |
+|             | ($x_1, x_1 + x_2, + x_1 +\ldots+x_n$) |  choose(n,k)  | Combinatoria de $n$ sobre $k$ |  
+
+--- 
+
+## Pidiendo ayuda en R 
+
+
+La documentación de ayuda y soporte en R es completa y de fácil acceso desde la línea de comando. 
+
+### Ayuda general 
+
+```{r, eval=FALSE}
+help.start()           # Ofrece links de ayuda general
+help.search("texto")    # Busca un tema específico
+```
+
+```{r, eval=F}
+?mean  # Para funciones conocidas 
+
+??correlation # Búsuqedas más amplias 
+
+
+```
+
+
+---- 
+

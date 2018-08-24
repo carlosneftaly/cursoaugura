@@ -1,0 +1,14 @@
+Transformaciones
+Nota: recuerde registrar sus datos con las variables en cada columna y las observaciones en las filas. La primera fila debe contener los nombres de las variables y se debe comenzar en la primera celda (A1).
+
+Descripción
+Este script contiene los comandos necesarios para ejecutar transformaciones de variables. Para este ejemplo (Transformaciones.csv) los datos corresponden a dos factores denominados "Tratamiento" y "Bloque", con 3 niveles el primero y 2 el segundo.
+La variable respuesta es Esporas.
+
+Variable respuesta: Esporas.
+Variables explicativas: Tratamiento y Bloque.
+
+El segundo ejemplo (Transformaciones2.csv), los datos corresponde a un factor denominado "Bacteria" con 4 niveles. La variable respuesta es Incidencia.
+
+Variables respuesta: Incidencia.
+Variable explicativa: Bacteria.

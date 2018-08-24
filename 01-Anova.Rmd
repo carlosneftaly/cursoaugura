@@ -1,0 +1,29 @@
+---
+title: Análisis exploratorio de datos con R
+author: Carlos N. Lozano
+---
+
+
+------------
+
+> ### Objectivos de aprendizaje
+>
+> *Prinicipio Análisis de varianza
+> * Conducir ANOVA en R
+> * Comparaciones múltiples
+> * Errores y problemas más comunes en R 
+
+------------
+
+
+# ANOVA I 
+
+## CDA 
+ + <i class="far fa-file-powerpoint"></i> [Presentación](ANOVA/index.html)
+ 
+ + <img src="https://png.icons8.com/cotton/50/000000/copy.png"> [Set de datos I](https://drive.google.com/file/d/16gjVHspjcLTkHvXzN4Prkmr4PUk9-Ao4/view?usp=sharing)
+ 
+  + <img src="https://png.icons8.com/cotton/50/000000/copy.png"> [Set de datos II](https://drive.google.com/file/d/1UoteTJFYIZIY8PLttxHkvcMyP5OpO_c1/view?usp=sharing)
+ 
+ +  <img src="https://png.icons8.com/ultraviolet/50/000000/xbox-r.png">[Script R](https://drive.google.com/file/d/1CO7WsZ5_freJ-7bHkildufGqZ90adYRK/view?usp=sharing)
+ 
