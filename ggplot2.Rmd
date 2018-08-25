@@ -1,0 +1,21 @@
+---
+title: Visualización de datos con ggplot2
+author: Carlos N. Lozano
+---
+
+
+------------
+
+> ### Objectivos de aprendizaje
+>
+> * Introducción a ggplot2: _The grammar of the graphics_
+> 
+
+
+------------
+
+
+# Introducción a ggplot2 
+
+ + <i class="far fa-file-powerpoint"></i> [Presentación](ggplot2/index.html)
+ 

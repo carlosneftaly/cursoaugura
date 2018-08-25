@@ -20,7 +20,7 @@ navbar:
       icon: fa-home
       href: index.html
     - text: '00-Intro' 
-      icon: <i class="fab fa-r-project"></i>
+      icon: fab fa-r-project
       href: 01-eda.html
     - text: 'Análisis de varianza'  
       icon: fa-chart-bar
@@ -43,10 +43,13 @@ navbar:
         href: NonP.html
       - text: 'Tablas de contigencia' 
         icon: fa-table
-        href: 00-Intro.html
+        href: chisq.html
       - text: 'Regresión lineal'
         icon: fa-chart-line
-        href: 00-Intro.html
+        href: rlm.html
+    - text: ggplot2 
+      icon: fa-images
+      href: ggplot2.html
     
   right: 
     - text: 'Programa'

@@ -1,0 +1,24 @@
+---
+title: Tablas de contigencia $\chi ^ 2$
+author: Carlos N. Lozano
+---
+  
+  
+------------
+  
+> ### Objectivos de aprendizaje
+  
+> 
+> 
+  
+  
+------------
+
+  
+ + <img src="https://png.icons8.com/cotton/50/000000/copy.png"> [Set de datos I](https://drive.google.com/file/d/1OKHTysZLa0ON58_BjwqEUA1ANZcjC5gV/view?usp=sharing)
+ 
+  + <img src="https://png.icons8.com/cotton/50/000000/copy.png"> [Set de datos II](https://drive.google.com/file/d/1gz5rTwDwrMovVG1Vl6lSpBS8so6-451K/view?usp=sharing)
+ 
+
+ +  <img src="https://png.icons8.com/ultraviolet/50/000000/xbox-r.png">[Script R](https://drive.google.com/file/d/1Wnx-5Xne4c76R_RGxeKJsPFkjA0g_rIe/view?usp=sharing)
+ 

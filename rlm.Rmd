@@ -1,0 +1,27 @@
+---
+title: Regresión lineal 
+author: Carlos N. Lozano
+---
+
+
+------------
+
+> ### Objectivos de aprendizaje
+>
+> * Comprender los fundamentos de la regresión lineal
+> * Implementar análisis de RL simple y múltiple en R 
+> * Predecir valores futuro basados en la ecuación obtenida
+
+------------
+
+
+# Regresión lineal 
+
+
+ + <img src="https://png.icons8.com/dusk/50/000000/ms-powerpoint.png"> [Presentación](RLM/index.html)
+ 
+ + <img src="https://png.icons8.com/cotton/50/000000/copy.png"> [Set de datos](https://drive.google.com/open?id=19UrJCaaN1NcGhs0X4nxDHkzX1SMGI4Cj)
+ 
+
+ +  <img src="https://png.icons8.com/ultraviolet/50/000000/xbox-r.png">[Script R](https://drive.google.com/open?id=1kiuTaFm74ttzXkuXGDjrF9rsdQoPt3rq)
+ 
